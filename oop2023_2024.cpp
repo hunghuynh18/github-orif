@@ -4,13 +4,11 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
-
 // ================= CAN BO =================
 class CanBo {
 protected:
     string maCB, hoTen, donVi;
     double heSoLuong;
-
 public:
     virtual void Nhap() {
         cin.ignore();
@@ -23,40 +21,32 @@ public:
         cout << "He so luong: ";
         cin >> heSoLuong;
     }
-
     virtual double tinhLuong() = 0;
-
     string getTen() {
         int pos = hoTen.find_last_of(' ');
         return hoTen.substr(pos + 1);
     }
-
     string getDonVi() {
         return donVi;
     }
-
     virtual void Xuat() {
         cout << left << setw(10) << maCB
              << setw(25) << hoTen
              << setw(15) << donVi
              << setw(10) << tinhLuong() << endl;
     }
-
     virtual ~CanBo() {}
 };
-
 // ============== CAN BO GIANG DAY =============
 class CanBoGiangDay : public CanBo {
 private:
     int soNamCongTac;
-
 public:
     void Nhap() override {
         CanBo::Nhap();
         cout << "So nam cong tac: ";
         cin >> soNamCongTac;
     }
-
     double tinhLuong() override {
         double phuCap = 0;
         if (soNamCongTac >= 25) phuCap = 0.3;
@@ -65,12 +55,10 @@ public:
 
         return 1800000 * heSoLuong * (1 + phuCap);
     }
-
     int getSoNamCongTac() {
         return soNamCongTac;
     }
 };
-
 // ================== MAIN ==================
 int main() {
     vector<CanBoGiangDay*> ds;
@@ -85,7 +73,7 @@ int main() {
         ds.push_back(cb);
     }
 
-    // S?p x?p theo tên
+    // S?p x?p theo tÃªn
     sort(ds.begin(), ds.end(), [](CanBoGiangDay* a, CanBoGiangDay* b) {
         return a->getTen() < b->getTen();
     });
@@ -94,7 +82,7 @@ int main() {
     for (auto x : ds)
         x->Xuat();
 
-    // S? nam công tác ít nh?t
+    // S? nam cÃ´ng tÃ¡c Ã­t nh?t
     int minNam = ds[0]->getSoNamCongTac();
     for (auto x : ds)
         minNam = min(minNam, x->getSoNamCongTac());
@@ -127,3 +115,4 @@ int main() {
 
     return 0;
 }
+
