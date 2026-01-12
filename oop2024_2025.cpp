@@ -1,15 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
-
 // ================= L?P CO S? =================
 class Employee {
 protected:
     string maNV, hoTen;
     int ngay, thang, nam;
-
 public:
     Employee() {}
-
     Employee(string ma, string ten, int d, int m, int y) {
         maNV = ma;
         hoTen = ten;
@@ -17,23 +14,18 @@ public:
         thang = m;
         nam = y;
     }
-
     virtual double tinhLuong() = 0;
-
     int tinhTuoi() {
         return 2025 - nam;
     }
-
     string getTen() {
         int pos = hoTen.find_last_of(' ');
         return hoTen.substr(pos + 1);
     }
-
     string getHoDem() {
         int pos = hoTen.find_last_of(' ');
         return hoTen.substr(0, pos);
     }
-
     virtual void nhap() {
         cin.ignore();
         cout << "Ma NV: ";
@@ -43,13 +35,11 @@ public:
         cout << "Ngay sinh (dd mm yyyy): ";
         cin >> ngay >> thang >> nam;
     }
-
     virtual void xuat() {
         cout << left << setw(10) << maNV
              << setw(25) << hoTen
              << setw(12) << tinhLuong() << endl;
     }
-
     virtual ~Employee() {}
 };
 
@@ -92,7 +82,7 @@ public:
     }
 };
 
-// ================= HÀM SO SÁNH =================
+// ================= HÃ€M SO SÃNH =================
 bool cmp(Employee* a, Employee* b) {
     if (a->getTen() != b->getTen())
         return a->getTen() < b->getTen();
@@ -144,6 +134,7 @@ int main() {
 
     return 0;
 }
+
 
 
 
